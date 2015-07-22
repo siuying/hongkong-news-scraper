@@ -1,4 +1,5 @@
 require 'capybara/poltergeist'
+require 'tempfile'
 
 module Hongkong
   module News
@@ -6,7 +7,8 @@ module Hongkong
       module PhantomScraper
         include Capybara::DSL
 
-        def new_session
+        # on initialize, setup capybara to use poltergeist
+        def self.included(mod)
           Capybara.register_driver :poltergeist do |app|
             extensions = [
               File.expand_path("../phantom_scraper_extension.js", __FILE__)
@@ -16,15 +18,24 @@ module Hongkong
               js_errors: false,
               phantomjs: ENV['PHANTOMJS_PATH'])
           end
-
+          
+          Capybara.default_wait_time = 5
           Capybara.configure do |config|
             config.default_driver = :poltergeist
             config.javascript_driver = :poltergeist
             config.run_server = false
           end
+        end
 
+        # create a new session
+        def new_session
           @session = Capybara::Session.new(:poltergeist)
           @session.driver.headers = {'User-Agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X)'}
+          @session
+        end
+
+        # use created session
+        def page
           @session
         end
 
@@ -42,7 +53,7 @@ module Hongkong
         end
 
         def html
-          @session.html
+          page.html
         end
       end
     end

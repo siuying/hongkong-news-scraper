@@ -1,5 +1,4 @@
 require_relative './phantom_scraper'
-require 'tempfile'
 
 module Hongkong
   module News
@@ -27,13 +26,12 @@ module Hongkong
 
           document = Document.new
           document.source = 'appledaily'
-          document.title = page.evaluate_script("document.querySelector('#articleContent h1').innerText").strip
+          document.title = first("#articleContent h1").text.strip
           document.url = url
-          document.html = page.body
+          document.html = html
           document.content = page.evaluate_script("HongKongNews.getInnerText('#masterContent')")
           document.screenshot_data = screenshot_data
 
-          page.reset!
           document
         end
       end
