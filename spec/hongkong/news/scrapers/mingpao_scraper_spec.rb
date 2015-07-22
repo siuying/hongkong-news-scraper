@@ -4,10 +4,14 @@ require 'pry'
 RSpec.describe Hongkong::News::Scrapers::MingpaoScraper do
   let(:scraper) { return Hongkong::News::Scrapers::MingpaoScraper.new }
 
-  context "#news_urls" do
+  context "#news_links" do
     it "should return todays links" do
-      urls = scraper.news_urls
-      expect(urls).to_not be_empty
+      links = scraper.news_links
+      expect(links).to_not be_empty
+      links.each do |link|
+        expect(link).to_not be_nil
+        expect(link.url.match(/^http/)).to be_truthy
+      end
     end
   end
 

@@ -7,7 +7,7 @@ module Hongkong
         include PhantomScraper
 
         # Extract all news links from Apple Daily
-        def news_urls
+        def news_links
           new_session
           visit "http://hk.apple.nextmedia.com/"
 

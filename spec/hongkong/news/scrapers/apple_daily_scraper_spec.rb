@@ -2,10 +2,10 @@ require 'hongkong/news/scrapers'
 require 'pry'
 
 RSpec.describe Hongkong::News::Scrapers::AppleDailyScraper do
-  context "#news_urls" do
+  context "#news_links" do
     it "should return todays links" do
       scraper = Hongkong::News::Scrapers::AppleDailyScraper.new
-      urls = scraper.news_urls
+      urls = scraper.news_links
       expect(urls).to_not be_empty
     end
   end

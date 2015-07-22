@@ -1,4 +1,5 @@
 require_relative './phantom_scraper'
+require 'uri'
 
 module Hongkong
   module News
@@ -6,15 +7,17 @@ module Hongkong
       class MingpaoScraper
         include PhantomScraper
 
+        LIST_URL = "http://news.mingpao.com/pns/%E6%96%B0%E8%81%9E%E7%B8%BD%E8%A6%BD/web_tc/archive/latest"
+
         # Extract all news links from Mingpao
-        def news_urls
+        def news_links
           new_session
-          visit "http://news.mingpao.com/pns/%E6%96%B0%E8%81%9E%E7%B8%BD%E8%A6%BD/web_tc/archive/latest"
+          visit LIST_URL
 
           all(".listing ul li a").collect do |anchor|
             link = Link.new
             link.title = anchor.text
-            link.url = anchor["href"]
+            link.url = URI::join(LIST_URL, anchor["href"]).to_s
             link
           end
         end
