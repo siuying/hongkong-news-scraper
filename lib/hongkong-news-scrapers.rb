@@ -1,0 +1,1 @@
+require "hongkong/news/scrapers"
