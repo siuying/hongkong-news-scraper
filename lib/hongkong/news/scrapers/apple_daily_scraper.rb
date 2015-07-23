@@ -5,6 +5,10 @@ module Hongkong
     module Scrapers
       class AppleDailyScraper
         include PhantomScraper
+        
+        def name
+          "appledaily"
+        end
 
         # Extract all news links from Apple Daily
         def news_links
@@ -23,7 +27,7 @@ module Hongkong
           visit url
 
           document = Document.new
-          document.source = 'appledaily'
+          document.source = name
           document.title = doc.search("#articleContent h1").text.strip
           document.url = url
           document.html = html

@@ -15,6 +15,7 @@ RSpec.describe Hongkong::News::Scrapers::AppleDailyScraper do
       scraper = Hongkong::News::Scrapers::AppleDailyScraper.new
       document = scraper.news("http://hk.apple.nextmedia.com/news/art/20150720/19225923")
       expect(document).to_not be_nil
+      expect(document.source).to eq("appledaily")
       expect(document.title).to eq("王宇子被禁問父母下落")
       expect(document.url).to eq("http://hk.apple.nextmedia.com/news/art/20150720/19225923")
       expect(document.content).to be_include("王宇北京的家已人去樓空")

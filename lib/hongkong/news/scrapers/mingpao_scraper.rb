@@ -9,6 +9,10 @@ module Hongkong
 
         LIST_URL = "http://news.mingpao.com/pns/%E6%96%B0%E8%81%9E%E7%B8%BD%E8%A6%BD/web_tc/archive/latest"
 
+        def name
+          "mingpao"
+        end
+
         # Extract all news links from Mingpao
         def news_links
           visit LIST_URL
@@ -29,7 +33,7 @@ module Hongkong
           first("article p")
           
           document = Document.new
-          document.source = 'mingpao'
+          document.source = name
           document.title = doc.search("h1").text
           document.url = url
           document.html = html
