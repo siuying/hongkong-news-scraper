@@ -5,8 +5,13 @@ RSpec.describe Hongkong::News::Scrapers::AppleDailyScraper do
   context "#news_links" do
     it "should return todays links" do
       scraper = Hongkong::News::Scrapers::AppleDailyScraper.new
-      urls = scraper.news_links
-      expect(urls).to_not be_empty
+      links = scraper.news_links
+      expect(links).to_not be_empty
+
+      urls = links.collect {|l| l.url}
+      urls.each do |url|
+        expect(url).to_not be_nil
+      end
     end
   end
 

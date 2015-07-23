@@ -8,6 +8,7 @@ RSpec.describe Hongkong::News::Scrapers::MingpaoScraper do
     it "should return todays links" do
       links = scraper.news_links
       expect(links).to_not be_empty
+
       links.each do |link|
         expect(link).to_not be_nil
         expect(link.url.match(/^http/)).to be_truthy

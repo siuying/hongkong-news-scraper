@@ -19,7 +19,7 @@ module Hongkong
             link.title = option.text
             link.url = option["value"]
             link
-          end
+          end.reject { |l| l.url.nil? }
         end
 
         # Extract article from page from Apple Daily
