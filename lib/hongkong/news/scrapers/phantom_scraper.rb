@@ -17,7 +17,6 @@ module Hongkong
               timeout: 180,
               logger: nil, 
               phantomjs_logger: StringIO.new,
-              phantomjs_options: ['--ignore-ssl-errors=yes'],
               phantomjs: ENV['PHANTOMJS_PATH'])
           end
 
