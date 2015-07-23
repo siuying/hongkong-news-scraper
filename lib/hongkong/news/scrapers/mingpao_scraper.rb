@@ -11,7 +11,6 @@ module Hongkong
 
         # Extract all news links from Mingpao
         def news_links
-          new_session
           visit LIST_URL
 
           all(".listing ul li a").collect do |anchor|
@@ -24,7 +23,6 @@ module Hongkong
 
         # Extract article from page from Mingpao
         def news(url)
-          new_session
           visit url
 
           # wait for content to be loaded

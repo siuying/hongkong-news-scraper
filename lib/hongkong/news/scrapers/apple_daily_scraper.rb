@@ -8,7 +8,6 @@ module Hongkong
 
         # Extract all news links from Apple Daily
         def news_links
-          new_session
           visit "http://hk.apple.nextmedia.com/"
 
           all("#article_ddl option").collect do |option|
@@ -21,7 +20,6 @@ module Hongkong
 
         # Extract article from page from Apple Daily
         def news(url)
-          new_session
           visit url
 
           document = Document.new
