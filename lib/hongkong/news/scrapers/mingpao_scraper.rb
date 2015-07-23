@@ -17,12 +17,15 @@ module Hongkong
         def news_links
           visit LIST_URL
 
-          all(".listing ul li a").collect do |anchor|
+          links = all(".listing ul li a").collect do |anchor|
             link = Link.new
             link.title = anchor.text
             link.url = URI::join(LIST_URL, anchor["href"]).to_s
             link
           end
+
+          cleanup
+          links
         end
 
         # Extract article from page from Mingpao
@@ -40,6 +43,8 @@ module Hongkong
           document.content = page.evaluate_script("HongKongNews.getInnerText('article')")
           document.screenshot_data = screenshot_data
           document.image_url = doc.search("//meta[@property='og:image']/@content").first.text rescue nil
+
+          cleanup
           document
         end
       end

@@ -58,6 +58,30 @@ module Hongkong
           end
           @doc
         end
+
+        # call when shutdown phantomjs
+        def cleanup
+          wait_for_ajax
+          page.driver.reset!
+        end
+
+        private
+
+        # workaround for hang phantomjs
+        def wait_for_ajax
+          Timeout.timeout(Capybara.default_wait_time) do
+            loop until finished_all_ajax_requests?
+          end
+        end
+
+        def finished_all_ajax_requests?
+          begin
+            page.evaluate_script("(typeof jQuery !== \"undefined\") ? jQuery.active : 0").zero?
+          rescue Exception => e
+            puts "ignored excpetion wiating ajax: #{e}"
+          end
+        end
+
       end
     end
   end
