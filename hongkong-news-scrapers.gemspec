@@ -26,4 +26,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'capybara'
   spec.add_dependency 'poltergeist'
+  spec.add_dependency 'nokogiri'
 end

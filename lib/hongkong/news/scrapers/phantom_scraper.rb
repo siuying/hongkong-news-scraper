@@ -1,4 +1,5 @@
 require 'capybara/poltergeist'
+require 'nokogiri'
 require 'tempfile'
 
 module Hongkong
@@ -44,6 +45,14 @@ module Hongkong
 
         def html
           page.html
+        end
+
+        # Get a Nokogiri Document for current page
+        def doc
+          unless @doc
+            @doc = Nokogiri::HTML(html)
+          end
+          @doc
         end
       end
     end
