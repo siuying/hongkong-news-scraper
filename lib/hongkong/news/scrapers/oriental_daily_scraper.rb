@@ -23,8 +23,6 @@ module Hongkong
             link.url = URI::join(LIST_URL, option["value"]).to_s
             link
           end.reject { |l| l.url.to_s.end_with?("#") }
-
-          cleanup
           links
         end
 
@@ -45,8 +43,6 @@ module Hongkong
 
           image = doc.search("#contentCTN .photo img").first
           document.image_url = URI::join(url, image["src"]).to_s if image
-
-          cleanup
           document
         end
       end
