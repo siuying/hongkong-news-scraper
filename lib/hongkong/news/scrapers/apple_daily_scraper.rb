@@ -33,7 +33,6 @@ module Hongkong
           document.url = url
           document.html = html
           document.content = page.evaluate_script("HongKongNews.getInnerText('#masterContent')")
-          document.screenshot_data = screenshot_data
           document.image_url = doc.search("//meta[@property='og:image']/@content").first.text rescue nil
           document
         end

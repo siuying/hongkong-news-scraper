@@ -39,8 +39,6 @@ module Hongkong
           document.url = url
           document.html = html
           document.content = page.evaluate_script("HongKongNews.getInnerText('#contentCTN-top')") + "\n" + page.evaluate_script("HongKongNews.getInnerText('#contentCTN-right')")
-          document.screenshot_data = screenshot_data
-
           image = doc.search("#contentCTN .photo img").first
           document.image_url = URI::join(url, image["src"]).to_s if image
           document
