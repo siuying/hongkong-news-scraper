@@ -14,7 +14,7 @@ module Hongkong
         def news_links
           visit "http://hk.apple.nextmedia.com/"
 
-          links = all("#article_ddl option").collect do |option|
+          links = doc.css("#article_ddl option").collect do |option|
             link = Link.new
             link.title = option.text
             link.url = option["value"]

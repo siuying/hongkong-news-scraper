@@ -17,7 +17,7 @@ module Hongkong
         def news_links
           visit LIST_URL
 
-          links = all("#articleListSELECT option").collect do |option|
+          links = doc.css("#articleListSELECT option").collect do |option|
             link = Link.new
             link.title = option.text
             link.url = URI::join(LIST_URL, option["value"]).to_s
@@ -35,7 +35,7 @@ module Hongkong
           
           document = Document.new
           document.source = name
-          document.title = doc.search("h1").text
+          document.title = doc.css("h1").text
           document.url = url
           document.html = html
           document.content = page.evaluate_script("HongKongNews.getInnerText('#contentCTN-top')") + "\n" + page.evaluate_script("HongKongNews.getInnerText('#contentCTN-right')")

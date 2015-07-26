@@ -17,7 +17,7 @@ module Hongkong
         def news_links
           visit LIST_URL
 
-          links = all(".listing ul li a").collect do |anchor|
+          links = doc.css(".listing ul li a").collect do |anchor|
             link = Link.new
             link.title = anchor.text
             link.url = URI::join(LIST_URL, anchor["href"]).to_s
@@ -35,7 +35,7 @@ module Hongkong
           
           document = Document.new
           document.source = name
-          document.title = doc.search("h1").text
+          document.title = doc.css("h1").text
           document.url = url
           document.html = html
           document.content = page.evaluate_script("HongKongNews.getInnerText('article')")
