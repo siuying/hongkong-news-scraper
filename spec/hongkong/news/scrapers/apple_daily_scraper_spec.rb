@@ -25,7 +25,6 @@ RSpec.describe Hongkong::News::Scrapers::AppleDailyScraper do
       expect(document.url).to eq("http://hk.apple.nextmedia.com/news/art/20150720/19225923")
       expect(document.content).to be_include("王宇北京的家已人去樓空")
       expect(document.html).to be_include("王宇北京的家已人去樓空")
-      expect(document.screenshot_data).to_not be_nil
       expect(document.image_url).to eq("http://static.apple.nextmedia.com/images/apple-photos/video/20150720/392pix/1437338519_173b.jpg")
     end
   end

@@ -26,7 +26,6 @@ RSpec.describe Hongkong::News::Scrapers::OrientalDailyScraper do
       expect(document.url).to eq("http://orientaldaily.on.cc/cnt/news/20150723/00174_001.html")
       expect(document.content).to be_include("郭昨解釋，肝酵素分析儀於一三年八月安裝")
       expect(document.html).to be_include("郭昨解釋，肝酵素分析儀於一三年八月安裝")
-      expect(document.screenshot_data).to_not be_nil
       expect(document.image_url).to eq("http://orientaldaily.on.cc/cnt/news/20150723/photo/0723-00174-001h1.jpg")
     end
   end
