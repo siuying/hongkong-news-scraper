@@ -1,4 +1,5 @@
 require 'capybara/poltergeist'
+require 'capybara/dsl'
 require 'nokogiri'
 require 'tempfile'
 
@@ -20,7 +21,7 @@ module Hongkong
               phantomjs: ENV['PHANTOMJS_PATH'])
           end
 
-          Capybara.default_wait_time = 5
+          Capybara.default_max_wait_time = 5
           Capybara.configure do |config|
             config.default_driver = :poltergeist
             config.javascript_driver = :poltergeist
